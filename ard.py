@@ -9,8 +9,8 @@ import serial
 ard = serial.Serial('/dev/cu.usbserial-110', 9600)
 time.sleep(2)
 
-f = 44100
-duration = 2
+f = 16000
+duration = 3
 
 print("speak---")
 
@@ -24,6 +24,7 @@ while True:
         with sr.AudioFile('t.wav') as s:
             a = r.record(s)
             tx = r.recognize_google(a, language='en-UK')
+            print(tx)
             if tx in "on":
                print("!!!!")
                ard.write(b'1')
